@@ -1,8 +1,8 @@
-  require 'deface'  
+require 'deface'  
   
-  #Hooks have been replaced by Deface overrides
-  #Check out https://github.com/railsdog/deface for a quick overview of how it works and how to use it.
-  #
+#Hooks have been replaced by Deface overrides
+#Check out https://github.com/railsdog/deface for a quick overview of how it works and how to use it.
+#
 
 #replace :cart_item_price,                 'hooks/cart_item_price'
 Deface::Override.new(:virtual_path => 'orders/_line_item',
@@ -70,11 +70,19 @@ Deface::Override.new(:virtual_path => 'admin/orders/index',
 :disabled => false)
 
 #insert_after :admin_orders_index_search,  'admin/hooks/admin_orders_index_search'
+# Fix for edge Spree.
 Deface::Override.new(:virtual_path => 'admin/orders/index',
-:name => 'admin-orders-search',
-:insert_bottom => "[data-hook='admin_orders_index_search'], #admin_orders_index_search[data-hook]",
-:partial => "admin/hooks/admin_orders_index_search",
-:disabled => false)
+  :name => 'admin-orders-search-compat',
+#  :insert_bottom => "[data-hook='admin_orders_index_search'], #admin_orders_index_search[data-hook]",
+  :insert_bottom => "#admin_orders_index_search[data-hook]",
+  :partial => "admin/hooks/admin_orders_index_search",
+  :disabled => false)
+  
+Deface::Override.new(:virtual_path => 'admin/orders/index',
+  :name => 'admin-orders-search',
+  :insert_before => "[data-hook='admin_orders_index_search_buttons']",
+  :partial => "admin/hooks/admin_orders_index_search",
+  :disabled => false)
 
 # insert_after :admin_tabs,                 'admin/hooks/wholesale_tab'
 # This override targets the list which wraps the admin_tabs hook. It's not matching for some reason in
