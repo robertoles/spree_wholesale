@@ -37,7 +37,8 @@ class Admin::WholesalersController < Admin::ResourceController
       params[:search] ||= {}
       params[:search][:meta_sort] ||= "company.asc"
       @search = Wholesaler.search(params[:search])
-      @collection = @search.paginate(:per_page => Spree::Config[:admin_products_per_page], :page => params[:page])
+      # Rails 3.1.0 uses kaminari for pagination. https://github.com/amatsuda/kaminari
+      @collection = @search.page(params[:page]).per(Spree::Config[:admin_products_per_page])
     end
  
 end
