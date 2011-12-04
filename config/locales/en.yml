@@ -1,15 +1,15 @@
 en:
 
-  successfully_created: %{resource} was successfully created.
-  successfully_updated: %{resource} was successfully updated.
-  successfully_removed: %{resource} was successfully removed.
+  successfully_created: "%{resource} was successfully created."
+  successfully_updated: "%{resource} was successfully updated."
+  successfully_removed: "%{resource} was successfully removed."
 
 
   billing_firstname: "Billing First Name"
   billing_lastname: "Billing Last Name"
   shipping_firstname: "Shipping First Name"
   shipping_lastname: "Shipping Last Name"
-  
+
   buyer_contact: "Buyer Contact"
 
   wholesale: "Wholesale"
@@ -22,41 +22,41 @@ en:
   wholesale_login: "Wholesale Login"
   wholesale_apply: "Apply for a wholesale account"
   wholesale_signup: Wholesale Signup
-  
-  
-  
-  
+
+
+
+
   shared:
     address_form:
       use_for_shipping: "Use billing address for shipping"
 
   wholesale_customer: "Wholesale Customer ID: #%{id}"
 
-  
+
   wholesaler:
     signup_success: Thank you for your interest in becoming a wholesaler! We'll be in touch shortly.
     signup_failed: Wholesale account could not be created!
     parts_error_message: There are errors with the user or addresses
-  
-  
+
+
   admin:
-    
+
     hooks:
       product_form_right:
         master_wholesale_price: "Master Wholesale Price"
       admin_orders_index_search:
         show_wholesale_orders: "Show only wholesale orders"
-        
+
     variants:
       form:
         wholesale_price: "Wholesale Price"
-    
-    
+
+
     wholesalers:
-      
+
       success: Wholesale account was successfully created
       failed: Wholesale account could not be created
-    
+
       index:
         company: "Company"
         buyer_contact: "Buyer contact"
