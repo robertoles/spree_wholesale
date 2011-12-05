@@ -2,7 +2,6 @@ require 'spree_core'
 require 'spree_auth'
 require 'spree_sample' unless Rails.env == 'production'
 
-require 'spree_wholesale/custom_hooks'
 require 'spree_wholesale/wholesaler_controller'
 
 module SpreeWholesale  
@@ -22,6 +21,8 @@ module SpreeWholesale
       if 40 <= Spree.version.split(".")[1].to_i
         _load File.expand_path("../spree_wholesale/wholesaler_ability.rb", __FILE__)
       end
+
+      _load File.expand_path('../spree_wholesale/custom_hooks.rb', __FILE__)
     
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator.rb")) do |c|
         _load(c)
