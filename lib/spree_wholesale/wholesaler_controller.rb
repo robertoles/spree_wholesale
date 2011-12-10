@@ -1,56 +1,53 @@
 module SpreeWholesale
   module WholesalerController
 
-
     def self.included(mod)
       mod.instance_eval do
-        resource_controller
         prepend_before_filter :use_billing?, :only => [:create, :update]
         before_filter :setup_defaults, :only => [:new,:create,:edit,:update]
-        
-        index.before :new_wholesale_user
-        
+        before_filter :new_wholesale_user, :only => :index
+
         helper_method :wholesale_role
-        
+
       end
       mod.send(:include, ClassMethods)
     end
-    
+
     module ClassMethods
-      
+
       #=================================================
       # Overwrite point
-      
+
       def after_wholesaler_create
         flash[:notice] = I18n.t('wholesaler.signup_success')
         redirect_to wholesalers_path
       end
-      
+
       def after_wholesaler_failed_create
         flash[:error] = I18n.t('wholesaler.signup_failed')
         render :action => :new
       end
-  
+
       #=================================================
-      
+
       def wholesale_role
         @wholesale_role ||= Role.find_or_create_by_name("wholesaler")
       end
-      
+
       def new_wholesale_user
         @user = User.new
       end
-      
+
       def attach_wholesaler_parts
         @wholesaler.user         = @user
         @wholesaler.bill_address = @bill_address
         @wholesaler.ship_address = @ship_address
       end
-      
+
       def new
         @wholesaler ||= Wholesaler.new(params[:wholesaler])
       end
-      
+
       def create
         if attach_wholesaler_parts && @wholesaler.save
           after_wholesaler_create
@@ -58,7 +55,7 @@ module SpreeWholesale
           after_wholesaler_failed_create
         end
       end
-      
+
       def update
         @bill_address.update_attributes(params[:bill_address])
         if use_billing?
@@ -72,11 +69,11 @@ module SpreeWholesale
         @wholesaler.touch && @wholesaler.save
         super
       end
-            
+
       def use_billing?
         @use_billing ||= params[:wholesaler].delete(:use_billing).to_i == 1
       end
-      
+
       def setup_defaults
         params[:wholesaler] ||= {}
         if request.get? && params[:dev]
@@ -87,21 +84,21 @@ module SpreeWholesale
         @roles = Role.all
         case params[:action]
           when 'new', 'create'
-            @wholesaler = Wholesaler.new(params[:wholesaler])    
+            @wholesaler = Wholesaler.new(params[:wholesaler])
             @user = User.new(params[:user])
             @bill_address = Address.new(params[:bill_address] || { :country_id => default_country.id })
             if use_billing?
               @ship_address = @bill_address
             else
               @ship_address = Address.new(params[:ship_address] || { :country_id => default_country.id })
-            end                    
+            end
           when 'edit', 'update', 'destroy'
             @wholesaler   = Wholesaler.find(params[:id])
             @user         = @wholesaler.user
             @bill_address = @wholesaler.bill_address
-            @ship_address = @wholesaler.ship_address                        
-        end                
-      end    
+            @ship_address = @wholesaler.ship_address
+        end
+      end
     end
   end
 end
