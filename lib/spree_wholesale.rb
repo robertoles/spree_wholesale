@@ -22,7 +22,9 @@ module SpreeWholesale
         _load File.expand_path("../spree_wholesale/wholesaler_ability.rb", __FILE__)
       end
 
-      _load File.expand_path('../spree_wholesale/custom_hooks.rb', __FILE__)
+      Dir.glob(File.join(File.dirname(__FILE__), "../app/overrides/**/*.rb")) do |c|
+        Rails.application.config.cache_classes ? require(c) : load(c)
+      end
     
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator.rb")) do |c|
         _load(c)
