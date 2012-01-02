@@ -85,21 +85,9 @@ Deface::Override.new(:virtual_path => 'admin/orders/index',
   :disabled => false)
 
 # insert_after :admin_tabs,                 'admin/hooks/wholesale_tab'
-# This override targets the list which wraps the admin_tabs hook. It's not matching for some reason in
-# spree 0.60.0 when set directly onto the admin_tabs hook, so this is the workaround.
-Deface::Override.new(:virtual_path => "layouts/admin",
-:name => "admin-wholesale-tab-ul",
-:insert_bottom => "div#admin-menu ul",
-:partial => "admin/hooks/wholesale_tab",
-:disabled => false)
-
-
-# insert_after :admin_tabs,                 'admin/hooks/wholesale_tab'
-# This is the 'proper' way of accessing the admin_tabs hook, but it doesn't work for me, hence above.
-# DISABLED
 Deface::Override.new(:virtual_path => "layouts/admin",
 :name => "admin-wholesale-tab",
-:insert_bottom => "[data-hook='admin_tabs'], #admin_tabs[data-hook]",
+:insert_bottom => "[data-hook='admin_tabs']",
 :partial => "admin/hooks/wholesale_tab",
-:disabled => true)
+:disabled => false)
 
