@@ -48,8 +48,7 @@ class Spree::Admin::WholesalersController < Spree::Admin::ResourceController
   def destroy
     @wholesaler = Spree::Wholesaler.find(params[:id])
     @wholesaler.destroy
-    flash[:notice] = I18n.t('spree.admin.wholesaler.destroy_success')
-    respond_with(@wholesaler)
+    redirect_to request.referer, :flash => { :notice => I18n.t('spree.admin.wholesaler.destroy_success') }
   end
 
   def approve
