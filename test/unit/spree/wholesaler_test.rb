@@ -59,11 +59,25 @@ class Spree::WholesalerTest < ActiveSupport::TestCase
 
   end
 
+  context 'active and inactive scopes' do
 
-  #should "activate and deactivate" do
-  #
-  #  @wholesaler.deactivate!
-  #  assert !@wholesaler.active?
-  #end
+    setup do
+      @wholesaler_1 = Factory.create(:wholesaler, :user => Factory.create(:wholesale_user))
+      @wholesaler_1.deactivate!
+      @wholesaler_2 = Factory.create(:wholesaler, :user => Factory.create(:wholesale_user))
+      @wholesaler_2.activate!
+      @wholesaler_3 = Factory.create(:wholesaler, :user => Factory.create(:wholesale_user))
+      @wholesaler_3.deactivate!
+    end
+
+    should 'only return active wholesalers for active scope' do
+      assert_equal [@wholesaler_2], Spree::Wholesaler.active
+    end
+
+    should 'only return inactive wholesalers for inactive scope' do
+      assert_equal [@wholesaler_1, @wholesaler_3], Spree::Wholesaler.inactive
+    end
+
+  end
 
 end
