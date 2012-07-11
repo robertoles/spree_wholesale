@@ -1,5 +1,7 @@
 Spree::Order.class_eval do
 
+  scope :wholesale, where(:wholesale => true)
+
   def wholesale
     read_attribute(:wholesale) && !wholesaler.nil?
   end

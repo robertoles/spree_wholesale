@@ -19,8 +19,7 @@
     <th><%= sort_link @search, :user_email, t('email') %></th>
     <th><%= sort_link @search, :phone, t('phone') %></th>
     <th><%= t('active') %></th>
-    <th>
-    </th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -31,7 +30,7 @@
         <td><%= wholesaler.buyer_contact %></td>
         <td><%= mail_to wholesaler.email %></td>
         <td><%= wholesaler.phone %></td>
-        <td width="50px"><%= wholesaler.roles.include?("wholesale") ? 'yes' : 'no' %></td>
+        <td width="50px"><%= wholesaler.active? ? 'yes' : 'no' %></td>
         <td>
           <%= link_to_edit wholesaler %> &nbsp;
           <%= link_to_delete wholesaler %> &nbsp;
@@ -74,7 +73,6 @@
       <%= t(".notes") %><br />
       <%= f.text_field :notes_cont, :size=>18 %>
     </p>
-
     <p><%= button t("search") %></p>
   <% end %>
 </div>

@@ -21,6 +21,12 @@ class Spree::Wholesaler < ActiveRecord::Base
   delegate_belongs_to :user, :roles
   delegate_belongs_to :user, :email
 
+  scope :active, joins(:user => :roles).where('spree_roles.name = ?', 'wholesaler')
+  # TODO need a solution that remains a Relation to paginate
+  # scope :inactive, joins(:user => :roles).select('spree_roles.name AS role_names').where("'wholesaler' NOT IN (role_names)")
+  # scope :inactive, joins(:user => :roles).find_by_sql("SELECT spree_roles.name AS role_names WHERE 'wholesaler' NOT IN (role_names)")
+  scope :inactive, lambda { all - active }
+
   def activate!
     get_wholesale_role
     return false if user.roles.include?(@role)
