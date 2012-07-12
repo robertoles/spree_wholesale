@@ -20,8 +20,9 @@ en:
   wholesale_price: "Wholesale Price"
 
   actions:
+    approve: 'Approve'
     cancel: "Cancel"
-
+    deny: 'Deny'
   shared:
     address_form:
       use_for_shipping: "Use billing address for shipping"
