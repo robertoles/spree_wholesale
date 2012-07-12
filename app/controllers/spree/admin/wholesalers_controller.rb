@@ -42,7 +42,9 @@ class Spree::Admin::WholesalersController < Spree::Admin::ResourceController
     else
       flash[:error] = I18n.t('spree.admin.wholesaler.update_failed')
     end
-    respond_with(@wholesaler)
+    respond_with(@wholesaler) do |format|
+      format.html { redirect_to spree.admin_wholesaler_path(@wholesaler) }
+    end
   end
 
   def destroy
