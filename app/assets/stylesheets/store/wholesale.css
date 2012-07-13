@@ -8,3 +8,7 @@ span.price_msrp {
 span.price_wholesale {
   color: #68962c;
 }
+
+h4.wholesale-customer-id {
+  padding-left: 15px;
+}
