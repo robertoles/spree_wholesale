@@ -9,6 +9,10 @@ input.required, select.required {
   color: #222;
 }
 
+#billing .field label, #shipping .field label {
+  display: inline-block;
+}
+
 .leftie, .rightie {
   display: block;
   width: 49%;
