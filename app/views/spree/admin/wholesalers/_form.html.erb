@@ -6,19 +6,19 @@
   <fieldset class="wholesaler-details">
     <legend>Company Information</legend>
     <p>
-      <%= form.label :company %> <span class="req">*</span><br/>
+      <%= form.label :company %> <span class="required">*</span><br/>
       <%= form.text_field :company, :class => 'required' %>
     </p>
     <p>
-      <%= form.label :buyer_contact %> <span class="req">*</span><br/>
+      <%= form.label :buyer_contact %> <span class="required">*</span><br/>
       <%= form.text_field :buyer_contact, :class => 'required' %>
     </p>
     <p>
-      <%= form.label :manager_contact %> <span class="req">*</span><br/>
+      <%= form.label :manager_contact %> <span class="required">*</span><br/>
       <%= form.text_field :manager_contact, :class => 'required' %>
     </p>
     <p>
-      <%= form.label :phone %> <span class="req">*</span><br/>
+      <%= form.label :phone %> <span class="required">*</span><br/>
       <%= form.text_field :phone, :class => 'required' %>
     </p>
     <p>
@@ -30,7 +30,7 @@
       <%= form.text_field :resale_number %>
     </p>
     <p>
-      <%= form.label :taxid %> <span class="req">*</span><br/>
+      <%= form.label :taxid %> <span class="required">*</span><br/>
       <%= form.text_field :taxid, :class => 'required' %>
     </p>
     <p>
@@ -38,7 +38,7 @@
       <%= form.text_field :web_address %>
     </p>
     <p>
-      <%= form.label :terms %> <span class="req">*</span><br/>
+      <%= form.label :terms %> <span class="required">*</span><br/>
       <%= form.select :terms, Spree::Wholesaler.term_options, :class => 'required' %>
     </p>
     <p>
