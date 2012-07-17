@@ -4,7 +4,7 @@ class Spree::Wholesaler < ActiveRecord::Base
   attr_accessible :bill_address_attributes, :ship_address_attributes, :user_attributes,
                   :ship_address, :bill_address,
                   :company, :buyer_contact, :manager_contact, :phone, :fax, :resale_number,
-                  :taxid, :web_address, :terms, :notes, :use_billing
+                  :taxid, :web_address, :terms, :notes, :use_billing, :user_id
 
   belongs_to :user, :class_name => "Spree::User"
   belongs_to :bill_address, :foreign_key => "billing_address_id", :class_name => "Spree::Address", :dependent => :destroy

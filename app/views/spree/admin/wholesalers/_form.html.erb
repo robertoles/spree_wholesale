@@ -50,6 +50,11 @@
   <fieldset class="user-details">
     <legend>User Details:</legend>
     <% if @wholesaler.new_record? %>
+      <p>
+        <%= form.label :user %>
+        <%= form.select :user_id, Spree::User.all.map{ |u| [u.email, u.id] } %>
+      </p>
+      <h2><%= t :or_create_new_user %></h2>
       <%= form.fields_for :user do |uf| %>
         <%= render 'spree/shared/user_form', :f => uf %>
       <% end %>
