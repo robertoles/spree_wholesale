@@ -1,5 +1,16 @@
 (function($){
   $(document).ready(function(){
+
+    $('form.wholesaler-form select#wholesaler_user_id').bind('change', function() {
+      if ($(this).val() === '') {
+        $('div.user_fields').show();
+        $('div.user_fields input').removeAttr('disabled');
+      } else {
+        $('div.user_fields').hide();
+        $('div.user_fields input').attr('disabled', 'disabled');
+      }
+    }).change();
+
     if($('.wholesaler-form, .new_wholesaler').is('*')){
 
       // $('.wholesaler-form, .new_wholesaler').validate();
