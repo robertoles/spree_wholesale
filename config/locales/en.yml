@@ -13,6 +13,8 @@ en:
   editing_wholesaler: "Edit Wholesaler"
   wholesaler_account: "Wholesaler Account"
   listing_wholesalers: "Listing Wholesaler"
+  or_create_new_user: 'Or create new user'
+  user_details: 'User details'
   wholesale_login: "Wholesale Login"
   wholesale_apply: "Apply for a wholesale account"
   wholesale_signup: "Wholesale Signup"
