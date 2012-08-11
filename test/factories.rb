@@ -51,12 +51,11 @@ FactoryGirl.define do
   end
 
   factory :admin_user, :parent => :user do
-    roles { [Spree::Role.find_or_create_by_name("admin")] }
+    roles { [Spree::Role.find_or_create_by_name("user"), Spree::Role.find_or_create_by_name("admin")] }
   end
 
   factory :wholesale_user, :parent => :user do
-    roles { [Spree::Role.find_or_create_by_name("wholesaler")] }
-    #wholesaler { Factory.create(:wholesaler) }
+    roles { [Spree::Role.find_or_create_by_name("user"), Spree::Role.find_or_create_by_name("wholesaler")] }
   end
 
   factory :order, :class => Spree::Order do

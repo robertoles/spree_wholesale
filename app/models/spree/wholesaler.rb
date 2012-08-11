@@ -22,7 +22,9 @@ class Spree::Wholesaler < ActiveRecord::Base
   delegate_belongs_to :user, :email
 
   scope :active, joins(:user => :roles).where('spree_roles.name = ?', 'wholesaler')
-  scope :inactive, joins(:user).joins("LEFT OUTER JOIN spree_roles_users ON spree_roles_users.user_id = spree_wholesalers.user_id").where("spree_roles_users.user_id IS NULL OR spree_roles_users.role_id != (select id from spree_roles where name = 'wholesaler')")
+  scope :inactive, joins("LEFT OUTER JOIN spree_roles_users ON spree_roles_users.user_id = spree_wholesalers.user_id")
+                     .group('spree_roles_users.user_id')
+                     .having("spree_roles_users.role_id != (select id from spree_roles where name = 'wholesaler')")
 
   def activate!
     get_wholesale_role
