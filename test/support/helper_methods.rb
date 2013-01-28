@@ -39,8 +39,8 @@ end
 #        :email => EMAIL,
 #        :login => EMAIL
 #      )
-#      @wholesale_user.roles << roles(:user) unless @wholesale_user.has_role?("user")
-#      @wholesale_user.roles << roles(:wholesaler) unless @wholesale_user.has_role?("wholesaler")
+#      @wholesale_user.roles << roles(:user) unless @wholesale_user.has_spree_role?("user")
+#      @wholesale_user.roles << roles(:wholesaler) unless @wholesale_user.has_spree_role?("wholesaler")
 #      @wholesale_user.save
 #    end
 #    @wholesale_user
